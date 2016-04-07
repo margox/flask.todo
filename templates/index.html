@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+    <title>Flask Todo</title>
+</head>
+<body class="before-loaded">
+    <div class="box">
+        <h5 class="caption">TODO LIST</h5>
+        <ul class="todo-list" id="todo-list">
+            {% for todo in todos %}
+            <li class="todo-item" id="todo-item-{{todo.id}}">
+                <div class="opts">
+                    <input type="checkbox" class="todo-check" {% if todo.checked %}checked{% endif %} id="todo-check-{{todo.id}}" data-id="{{todo.id}}">
+                    <label class="todo-check-label" data-id="{{todo.id}}"></label>
+                </div>
+                <button class="remove-todo" data-id="{{todo.id}}"></button>
+                <span>{{todo.content}}</span>
+            </li>
+            {% endfor %}
+        </ul>
+        <div class="form" id="todo-form">
+            <div class="sending-tip">
+                <i class="spinner"></i>
+                <span>sending ...</span>
+            </div>
+            <input type="text" id="new-todo" placeholder="type in some texts then press enter">
+        </div>
+    </div>
+    <script src="{{url_for('static', filename='js/app.js')}}"></script>
+</body>
+</html>
